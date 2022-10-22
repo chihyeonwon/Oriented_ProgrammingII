@@ -289,3 +289,69 @@ int main()
 	cout << "sum(10, 20, 30, 40, 50)=" << sum(10, 20, 30, 40, 50) << endl;
 }
 ```
+
+### 인라인 함수
+
+간단한 함수 같은 경우에는 함수 호출 오버헤드를 줄여 프로그램을 빠르게 실행시켜주는 인라인 함수가 존재한다.
+```c++
+inline double square(double i) {
+	return i*i;
+}
+```
+함수 앞에 inline 키워드를 붙여주기만 하면 된다.
+
+### string 클래스
+
+string 클래스는 문자열 처리에 필요한 여러가지 함수들을 제공한다.   
+함수들이 내부적으로 어떻게 구현되는지 모르더라도 사용할 수 있다.
+
+### string 클래스를 사용하는 입출력
+
+cin에서 string 객체로 입력하는 경우 공백 문자가 있으면 입력을 중단하게 된다.   
+이를 방지하려면 한 줄을 읽는 getline() 함수를 사용한다.   
+
+```c++
+string line;
+getline(cin, line);
+```
+
+cin.ignore()함수로 엔터키를 없애고 geline으로 주소를 읽었다.
+
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main()
+{
+	string s1, addr;
+
+	cout << "이름을 입력하시오 : ";
+	cin >> s1;
+	cin.ignore(); // 엔터키를 없애기 위해 필요하다.
+
+	cout << "주소를 입력하시오 : ";
+	getline(cin, addr);
+	cout << addr << "의 " << s1 << "씨 안녕하세요?" << endl;
+
+	return 0;
+}
+```
+
+## string 멤버 함수 호출
+
+```c++
+string s = "hello";
+int size = s.size();
+```
+
+string 클래스에는 문자열의 추가,삭제,검색을 위한 많은 멤버함수가 존재한다.   
+
+1. s.empty() : s가 비어있으면 true 반환
+2. s.insert(pos, s2) : pos 위치에 s2를 삽입
+3. s.remove(pos, len) : s의 pos 위치에 len만큼 삭제
+4. s.find(s2) : s에서 문자열 s2가 발견되는 인덱스 반환
+5. s.find(pos, s2) : s의 pos 위치부터 문자열 s2가 발견되는 첫번째 인덱스 반환
+
+
+

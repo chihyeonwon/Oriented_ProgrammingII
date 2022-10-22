@@ -1,7 +1,7 @@
 # Oriented_ProgrammingII
 객체지향프로그래밍II C++ 프로그래밍 위주 정리
 
-## 첫번째 프로그램 분석
+# 1장
 
 ```c++
 #include <iostream> // 헤더파일
@@ -85,3 +85,95 @@ const double TAX_RATE = 0.25 // 기호 상수 선언
 ## auto 키워드
 
 auto는 자동 타입 추론 기능을 제공한다. 함수를 정의할 때도 사용 가능하다.
+
+# 2장
+
+## 관계 연산자
+
+```c++
+(1 == 2) // 거짓(false)
+(10 > 4) // 참(true)
+(2 != 3) // 참(ture)
+```
+
+## boolalpha
+
+boolalpha는 bool값을 true나 false로 출력하게 한다. 
+```c++
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	bool b = (1 == 2);
+	cout << boolalpha;
+	cout << b << endl;
+
+	return 0;
+}
+```
+
+## 논리 연산자
+
+```c++
+x && y // AND 연산(곱연산) x, y가 모두 참이면 참, 그렇지 않으면 거짓
+x || y // OR 연산(합연산) x나 y중에서 하나만 참이면 참, 모두 거짓이면 거짓
+!x // NOT 연산, x가 참이면 거짓, y가 거짓이면 참
+```
+
+## if-else문, 중첩 if-else 문
+
+주어진 조건이 참이냐 거짓이냐에 따라서 서로 다른 문장을 실행
+```c++
+if (조건식) {
+  문장 1
+else {
+  문장 2
+}
+```
+
+if-else 문은 조건식이 참인지 거짓인지에 따라 2개의 문장에서 하나의 실행
+```c++
+if (조건식) {
+  문장1
+}
+else if {
+  문장2
+}
+else {
+  문장3
+}
+
+## switch 문
+
+switch 문은 여러 개의 가능한 실행 경로 중에서 하나를 선택, switch 안에 있는 수식과 case 절과 비교해서 일치하는 정수값이면 case 내에 문장 실행   
+default문은 없을 수도 있지만 미처 예상하지 못한 값을 알아내기 위해 포함시키는 게 좋다.
+
+## while 문
+
+while은 조건이 만족되면 반복을 계속하는 구조이다.
+```c++
+while(조건식) {
+  문장
+}
+
+## do-while 문
+
+do-while문은 while과 유사하지만 먼저 문장을 한번 실행하고 조건을 나중에 검사
+```c++
+do {
+  문장
+} while(조건식);
+```
+## for 루프
+
+for 루프는 일정한 횟수만큼 반복할 때 사용
+```c++
+for(초기식; 조건식; 증감식) {
+  문장
+}
+
+## continue 문
+
+continue문은 현재 수행하고 있는 반복과정의 나머지를 건너뛰고 다음 반복을 강제적으로 실행
+

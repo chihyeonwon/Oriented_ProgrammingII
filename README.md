@@ -601,4 +601,132 @@ int main()
 	Pizza pizza = createPizza();
 }
 ```
-pizza가 가지고 있던 값은 사라지고 createPizza()가 반환한 객체 p의 값이 덮여 씌워진다.`
+pizza가 가지고 있던 값은 사라지고 createPizza()가 반환한 객체 p의 값이 덮여 씌워진다.
+
+## 6장 
+
+### 객체 배열
+
+객체 배열 선언
+```c++
+클래스_이름 배열_이름[배열_크기];
+```
+
+```c++
+Circle objArray[3];
+```
+
+객체 배열안의 객체에는 기본 생성자가 필수로 정의되어 있어야 한다.
+
+### 벡터
+
+c++ 에서는 동적 배열인 벡터(vector)를 제공한다. 추가되는 요소의 개수에 따라서 자동적으로 크기가 조절된다.   
+벡터 선언은 다음과 같이한다.
+```c++
+vector<int> scores(10); // 크기가 10이고 배열의 자료형이 int인 scores 벡터 생성
+```
+
+### push_back() 과 pop_back() 
+
+벡터는 뒤에서 부터 자료를 넣거나 뺄 수 있다.   
+넣을 때는 벡터.push_back(자료)를 사용하고   
+뺄 때는 벡터.push_pop(자료)를 사용한다.
+
+### 중간에서 삭제하는 방법
+
+중간에서 삭제하려면 삭제하려는 요소의 인덱스를 알아야 한다.   
+요소의 인덱스가 i라면 다음과 같은 방법으로 삭제할 수 있다.
+```c++
+v.erase(v.begin() + i);
+```
+벡터에 다양한 자료형 문자열, 객체를 사용할 수 있다.
+
+### 벡터와 알고리즘
+
+벡터를 사용하는 한 가지 이유 중 하나는 편리한 STL 알고리즘을 제공한다는 것이다.
+```C++
+#include <vector>
+#include <algorithm> // 알고리즘을 사용하려면 include 해줘야한다.
+```
+
+회사에서 직원을 관리하기 위하여 직원들의 리스트를 만든다고 하자.   
+나이순으로 출력하는 것이 필요하다면 벡터를 사용할 수 있다.   
+compare 함수로 객체를 나이순으로 정렬한다.
+```c++
+bool compare(Person &p, Person &q) 
+{
+	return p.get_age() < q.get_age(); // 오름차순
+}
+```
+이 함수를 sort함수의 매개변수로 넘겨준다.
+```c++
+sort(list.begin(), list.end(), compare);
+```
+
+예시 코드는 다음과 같다.
+```c++
+#include <iostream>
+#include <string>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+class Person {
+private:
+	string name; // 직원 이름
+	int age; // 직원 나이
+public: 
+	Person() {
+		name = "";
+		age = 0;
+	}
+	Person(string n, int a) {
+		name = n;
+		age = a;
+	}
+	// 접근자
+	string getName() { return name; }
+	int getAge() { return age; }
+
+	// 설정자
+	void setName(string n) { name = n; }
+	void setAge(int a) { age = a; }
+	
+	void print() {
+		cout << name << " " << age << endl;
+	}
+};
+
+bool compare(Person& p, Person& q) {
+	return p.getAge() < q.getAge();
+}
+
+int main()
+{
+	vector<Person> list;
+
+	
+
+	list.push_back(Person("Kim", 32));
+	list.push_back(Person("Park", 40));
+	list.push_back(Person("Lee", 20));
+
+	sort(list.begin(), list.end(), compare);
+
+	for (auto& e : list) {
+		e.print();
+	}
+	
+	return 0;
+}
+```
+
+### Array 클래스
+
+```c++
+int main()
+{
+	array<int, 3> list = { 1, 2, 3};
+```
+자료형이 int고 크기가 3인 배열을 선언하였다. 동적 배열이 필요없다면 빠르고 다양한 함수를 지원하는
+array 클래스를 사용할 수 있다.

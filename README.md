@@ -353,5 +353,140 @@ string 클래스에는 문자열의 추가,삭제,검색을 위한 많은 멤버
 4. s.find(s2) : s에서 문자열 s2가 발견되는 인덱스 반환
 5. s.find(pos, s2) : s의 pos 위치부터 문자열 s2가 발견되는 첫번째 인덱스 반환
 
+## 4장
 
+### 객체의 생성
+
+```c++
+clss Circle {
+public: // 접근지정자
+ 	int radius; // 멤버변수
+	string color; // 멤버변수
+	 
+	// 멤버 함수
+	double calcArea() {
+		return 3.14*radius*radius; 
+	}
+};
+
+클래스를 정의하고 클래스를 사용자-정의 자료형으로 취급하여 객체를 생성한다.
+```c++
+Circle obj; // obj는 Circle 자료형의 변수이다.
+```
+
+객체의 멤버 접근
+   
+객체 안에 정의된 멤버 변수, 함수를 사용하려면 다음과 같다.
+```c++
+obj.radius =3; // obj의 멤버 변수인 radius에 3을 저장
+obj.calcArea(); // 멤버 함수인 calcArea()를 호출
+
+
+### 클래스의 인터페이스와 구현의 분리
+
+멤버 함수를 클래스 외부에 저장할 수 있는 기능이 있다.   
+멤버 함수를 클래스 안에서는 함수 원형(프로토타입)만 정의한다.
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Circle {
+public:
+	double calcArea();
+		
+	int radius; //반지름
+	string color; //색상
+};
+```
+calcArea() 함수를 클래스 외부에서 정의하면 다음과 같다.
+```c++
+double Circle::calcArea() {
+	return 3.14*radius*radius;
+}
+```
+
+반환형 클래스이름::멤버함수의 형식을 취한다.
+
+## 클래스의 선언과 클래스의 정의 분리
+
+클래스를 헤더 파일과 소스 파일로 나누어서 작성하는 방법이다.   
+   
+헤더파일에는 클래스를 사용하는데 필요한 클래스 선언이 들어간다.   
+멤버 함수들의 몸체는 소스 파일에 작성한다.
+
+헤더파일 예시코드는 다음과 같다.
+
+--car.h--
+```c++
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Car {
+	int speed;
+	int gear;
+	string color;
+public: 
+	int getSpeed();
+	void setSpeed(int s);
+};
+```
+
+여기서 멤버 함수의 몸체는 별도의 소스파일에 작성한다.   
+이때 위의 헤더파일을 포함해야한다.
+
+--car.cpp--
+```c++
+#include "car.h"
+
+int Car::getSpeed() {
+	return speed;
+}
+
+void Car::setSpeed(int s) {
+	speed = s;
+}
+```
+
+다른 소스파일에서 이 클래스를 사용하려면 헤더 파일만을 포함하면 된다.   
+---main.cpp--
+```c++
+#include "car.h" // car헤더파일만을 포함
+using namespace std;
+
+int main()
+{
+	Car myCar;
+	
+	myCar.setSpeed(80);
+	
+	cout << "현재 속도는 " << myCar.getSpeed() << endl;
+	
+	return 0;
+}
+```
+
+### 상속과 다형성
+
+상속은 기존의 코드를 재활용하기 위한 기법으로 이미 작성된 클래스를 이어받아서 새로운 클래스를 생성하는 기법이다.
+
+다음은 부모클래스 Shape를 상속받아서 Rectangle을 정의하는 예제 코드이다.
+```c++
+Class Shape {
+protected:
+	int x, y;
+public:
+	void draw() { }
+	void move() { }
+};
+
+class Rectangle : Shape {
+public:
+	int width, height;
+	int calcArea() {
+		return width*height;
+	}
+};
+```
 

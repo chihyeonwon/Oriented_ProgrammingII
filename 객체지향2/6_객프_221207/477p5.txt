@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Shape {
+private:
+	int x; // x 위치
+	int y; // y 위치
+	string color; // 색상
+public:
+	// 생성자 정의
+	Shape(int x = 0, int y=0, string color="") {
+		this->x = x;
+		this->y = y;
+		this->color = color;
+	}
+	//x 멤버변수에 대한 접근자
+	int getX() { return x; }
+	//x 멤버변수에 대한 설정자
+	void setX(int x) { this->x = x; }
+	//y 멤버변수에 대한 접근자
+	int getY() { return y; }
+	//salary 멤버변수에 대한 설정자
+	void setY(int y) { this->y = y; }
+	double getArea() {
+		return x*y;
+	}
+
+};
+
+class Circle : public Shape {
+public:
+	Circle(int x=0, int y=0, string color="") : Shape(x, y, color) {}
+	double getArea(int x, int y) {
+		return 3.14 * x * y;
+	}
+};
+
+int main()
+{
+	Circle c(3, 4, "yellow");
+
+	cout << "원의 면적: " << c.getArea(3, 4);
+
+	return 0;
+}

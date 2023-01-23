@@ -1,0 +1,51 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Human {
+private:
+	string name;
+	int age;
+public:
+	Human(string name, int age) {
+		this->name = name;
+		this->age = age;
+	}
+	// 멤버 변수 name 접근자
+	string getName() { return name;  }
+
+	// 멤버 변수 name 설정자
+	void setName(string n) {
+		name = n;
+	}
+	// 멤버 변수 age 접근자
+	int getAge() { return age; }
+
+	// 멤버 변수 age 설정자
+	void setAge(int a) {
+		age = a;
+	}
+	void print() {
+		cout << "이름은 " << name << " 나이는 " << age << endl;
+	}
+};
+
+class Student : public Human {
+private:
+	string major;
+public:
+	Student(string name, int age, string major) : Human(name, age) {
+		this->major = major;
+	}
+};
+
+int main()
+{
+	Human a("춘향", 18), b("몽룡", 21), c("사또", 50);
+
+	a.print();
+	b.print();
+	c.print();
+
+	return 0;
+}

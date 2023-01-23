@@ -1,0 +1,19 @@
+#include <iostream>
+using namespace std;
+
+class Point {
+private:
+    int point_x;
+    int point_y;
+public:
+    Point(int x, int y) {
+        point_x = x;
+        point_y = y;
+    }
+    ~Point() {  }
+};
+
+int main()
+{
+
+}

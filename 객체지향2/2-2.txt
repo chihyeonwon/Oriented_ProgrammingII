@@ -1,0 +1,17 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Person {
+private:
+	string name;
+	int snumber; // 주민등록번호
+	int age;
+public:
+	Person(string name, int snum, int age) : name("abc"), snumber(3), age(5) { }
+};
+
+int main()
+{
+   
+}

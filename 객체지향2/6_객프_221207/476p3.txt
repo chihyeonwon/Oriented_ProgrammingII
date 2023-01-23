@@ -1,0 +1,57 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Employee {
+private:
+	string name; // 이름
+	int salary; // 월급
+public:
+	// 생성자 정의
+	Employee(string name = "", int salary = 0) {
+		this->name = name;
+		this->salary = salary;
+	}
+	//name 멤버변수에 대한 접근자
+	string getName() { return name; }
+	//name 멤버변수에 대한 설정자
+	void setName(string n) { name = n; }
+	//salary 멤버변수에 대한 접근자
+	int getSalary() { return salary; }
+	//salary 멤버변수에 대한 설정자
+	void setSalary(int s) { salary = s; }
+	int computeSalary() {
+		return salary;
+	}
+
+};
+
+class Manager : public Employee {
+private:
+	int bonus; // 보너스
+public:
+	// 생성자 정의
+	Manager(string name, int salary, int bonus) : Employee(name, salary) {
+		this->bonus = bonus;
+	}
+	// bonus 멤버 변수에 대한 접근자
+	int getBonus() { return bonus; }
+	// bonus 멤버 변수에 대한 설정자
+	void setBonus(int b) { bonus = b; }
+	// 부모 클래스의 computeSalary()를 재정의하여 (salary+bonus) 반환
+	int computeSalary()  {
+		return Employee::getSalary() + bonus;
+	}
+};
+
+int main()
+{
+	Manager a("김철수", 200, 100);
+
+	cout << "이름: " << a.getName() << endl;
+	cout << "월급: " << a.getSalary() << endl;
+	cout << "보너스: " << a.getBonus() << endl;
+	cout << "전체 급여: " << a.computeSalary() << endl;
+
+	return 0;
+}
